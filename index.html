@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>IOT APP</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+
+
+	<div class="container-contact100">
+
+		<div class="wrap-contact100">
+			<form class="contact100-form validate-form">
+				<span class="contact100-form-title">
+					Flow Control APP
+				</span>
+
+
+				<div class="container-contact100-form-btn">
+					<button id = "motor-on" class="contact100-form-btn mx-auto ">
+						<span>
+							ON
+						</span>
+					</button>
+					<button id = "motor-off" class="contact100-form-btn  mx-auto">
+							<span>
+								OFF
+							</span>
+						</button>
+				</div>
+				<span class="contact100-form-title"></span>
+				<span class="contact100-form-title">
+						<h4>DEFINE REQUIRED VOLUME</h4>
+				</span>
+
+				<div class="wrap-input100 validate-input">
+						<input id="volumeinput" class="input100" type="text" name="name" placeholder="Total volume to be collected ">
+						<span class="focus-input100"></span>
+				</div>
+
+				<div class="container-contact100-form-btn mx-auto">
+						<button id= "setvolume" class="contact100-form-btn mx-auto ">
+							<span>
+								SET
+							</span>
+						</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+
+	<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+
+<script>
+		document.getElementById('motor-on').addEventListener('click', function() {
+					var url = "http://api.thingspeak.com/update?api_key=U8BP70THBYMLHI24&field1=1"
+					$.getJSON(url, function(data) {
+						console.log(data);
+					});
+		});
+		document.getElementById('motor-off').addEventListener('click', function() {
+				var url = "http://api.thingspeak.com/update?api_key=U8BP70THBYMLHI24&field1=0"
+				$.getJSON(url, function(data) {
+					console.log(data);
+				});
+		});
+		document.getElementById('setvolume').addEventListener('click', function() {
+				var volumeinput = document.getElementById('volumeinput').value;
+				var url = "http://api.thingspeak.com/update?api_key=U8BP70THBYMLHI24&field2=" + volumeinput
+				console.log("working fine uto this");
+				$.getJSON(url, function(data) {
+					console.log(data);
+				});
+				var url2 = "http://api.thingspeak.com/update?api_key=U8BP70THBYMLHI24&field1=1"
+				$.getJSON(url2, function(data) {
+					console.log(data);
+				});
+		});
+
+</script>
+
+</body>
+</html>
